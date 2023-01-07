@@ -2,24 +2,26 @@ package com.example.smartagenda.model;
 
 import com.example.smartagenda.enums.Gender;
 
-public class Person {
+import java.util.Date;
+
+public class Client {
     //protected int personId;
     protected String firstName;
     protected String lastName;
     protected String phone;
     protected String email;
-    protected int age;
+    protected Date birthdate;
     protected Gender gender;
 
-    public Person() {
+    public Client() {
     }
 
-    public Person(String firstName, String lastName, String phone, String email, int age) {
+    public Client(String firstName, String lastName, String phone, String email, Date birthdate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
         this.email = email;
-        this.age = age;
+        this.birthdate = birthdate;
     }
 
     public String getFirstName() {
@@ -38,11 +40,11 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
+    public Date getBirthdate() {
+        return birthdate;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
     }
 }
