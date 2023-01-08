@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.example.smartagenda.helper.Helper.parseDate;
+import static com.example.smartagenda.helper.MethodsHelper.parseDate;
 
 @Repository
 public class ClientRepository {

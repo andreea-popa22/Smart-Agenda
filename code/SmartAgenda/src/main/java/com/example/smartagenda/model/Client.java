@@ -5,13 +5,13 @@ import com.example.smartagenda.enums.Gender;
 import java.util.Date;
 
 public class Client {
-    //protected int personId;
-    protected String firstName;
-    protected String lastName;
-    protected String phone;
-    protected String email;
-    protected Date birthdate;
-    protected Gender gender;
+    private int clientId;
+    private String firstName;
+    private String lastName;
+    private String phone;
+    private String email;
+    private Date birthdate;
+    private Gender gender;
 
     public Client() {
     }
