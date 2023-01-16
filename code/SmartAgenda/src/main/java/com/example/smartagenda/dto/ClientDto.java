@@ -1,13 +1,20 @@
 package com.example.smartagenda.dto;
 
 import com.example.smartagenda.enums.Gender;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
-public class Provider {
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class ClientDto {
     @NotBlank
     private String firstName;
 
@@ -15,17 +22,14 @@ public class Provider {
     private String lastName;
 
     @NotBlank
-    private String phone;
+    private String phoneNumber;
 
     @NotBlank
-    private String email;
+    private String emailAddress;
 
     @NotNull
     private Date birthdate;
 
     @NotNull
     private Gender gender;
-
-    @NotNull
-    private Company company;
 }

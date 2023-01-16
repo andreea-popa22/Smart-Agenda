@@ -1,12 +1,17 @@
 package com.example.smartagenda.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
-
-public class ServiceProvider {
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class ServiceProviderDto {
     @NotNull
     private float price;
 

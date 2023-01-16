@@ -5,8 +5,16 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
-public class Client {
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class ProviderDto {
     @NotBlank
     private String firstName;
 
@@ -14,14 +22,17 @@ public class Client {
     private String lastName;
 
     @NotBlank
-    private String phoneNumber;
+    private String phone;
 
     @NotBlank
-    private String emailAddress;
+    private String email;
 
     @NotNull
     private Date birthdate;
 
     @NotNull
     private Gender gender;
+
+    @NotNull
+    private CompanyDto company;
 }

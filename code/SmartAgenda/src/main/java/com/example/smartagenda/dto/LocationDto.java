@@ -1,11 +1,18 @@
 package com.example.smartagenda.dto;
 
 import com.example.smartagenda.enums.LocationType;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
-public class Location {
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class LocationDto {
     @NotBlank
     private String name;
 

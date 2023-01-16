@@ -1,10 +1,17 @@
 package com.example.smartagenda.dto;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
-public class Company {
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class CompanyDto {
     @NotBlank
     private String name;
 

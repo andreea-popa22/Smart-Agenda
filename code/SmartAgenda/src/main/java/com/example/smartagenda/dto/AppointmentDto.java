@@ -1,19 +1,26 @@
 package com.example.smartagenda.dto;
 import jakarta.validation.constraints.*;
-
 import java.time.LocalTime;
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
-public class Appointment {
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class AppointmentDto {
     @NotNull
-    private Client client;
+    private ClientDto client;
 
     @NotNull
-    private Provider provider;
+    private ProviderDto provider;
 
     @NotNull
-    private Location location;
+    private LocationDto location;
 
     @NotNull
     private Date date;
