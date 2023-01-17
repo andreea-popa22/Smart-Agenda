@@ -22,10 +22,10 @@ public class ProviderDto {
     private String lastName;
 
     @NotBlank
-    private String phone;
+    private String phoneNumber;
 
     @NotBlank
-    private String email;
+    private String emailAddress;
 
     @NotNull
     private Date birthdate;
