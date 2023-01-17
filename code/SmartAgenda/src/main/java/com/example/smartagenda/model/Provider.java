@@ -28,11 +28,11 @@ public class Provider {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "email_address")
+    private String emailAddress;
 
     @Column(name = "birthdate")
     private Date birthdate;
@@ -47,4 +47,14 @@ public class Provider {
 
     @OneToMany(mappedBy = "appointments")
     private List<Appointment> appointments;
+
+    public Provider(String firstName, String lastName, String phoneNumber, String emailAddress, Date birthdate, Gender gender, Company company) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.emailAddress = emailAddress;
+        this.birthdate = birthdate;
+        this.gender = gender;
+        this.company = company;
+    }
 }

@@ -32,4 +32,10 @@ public class Company {
 
     @OneToMany(mappedBy = "providers")
     private List<Provider> providers;
+
+    public Company(String name, String contact, Location location) {
+        this.name = name;
+        this.contact = contact;
+        this.location = location;
+    }
 }

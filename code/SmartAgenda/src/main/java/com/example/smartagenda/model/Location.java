@@ -39,4 +39,11 @@ public class Location {
 
     @OneToMany(mappedBy = "appointments")
     private List<Appointment> appointments;
+
+    public Location(String name, String address, LocationType type, boolean isOffice) {
+        this.name = name;
+        this.address = address;
+        this.type = type;
+        this.isOffice = isOffice;
+    }
 }
