@@ -31,8 +31,8 @@ public class ProviderDto {
     private Date birthdate;
 
     @NotNull
-    private Gender gender;
+    private String gender;
 
     @NotNull
-    private CompanyDto company;
+    private int companyId;
 }

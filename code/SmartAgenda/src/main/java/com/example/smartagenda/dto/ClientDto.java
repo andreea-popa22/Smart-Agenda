@@ -31,5 +31,5 @@ public class ClientDto {
     private Date birthdate;
 
     @NotNull
-    private Gender gender;
+    private String gender;
 }

@@ -14,13 +14,13 @@ import lombok.Data;
 @NoArgsConstructor
 public class AppointmentDto {
     @NotNull
-    private ClientDto client;
+    private int clientId;
 
     @NotNull
-    private ProviderDto provider;
+    private int providerId;
 
     @NotNull
-    private LocationDto location;
+    private int locationId;
 
     @NotNull
     private Date date;

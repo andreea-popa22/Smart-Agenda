@@ -20,7 +20,7 @@ public class LocationDto {
     private String address;
 
     @NotNull
-    private LocationType type;
+    private String type;
 
     @NotNull
     private boolean isOffice = false;
