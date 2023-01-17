@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Builder
 @Data
 @AllArgsConstructor
@@ -26,8 +28,15 @@ public class Location {
     private String address;
 
     @Column(name = "location_type")
+    @Enumerated(EnumType.STRING)
     private LocationType type;
 
     @Column(name = "is_office")
     private boolean isOffice = false;
+
+    @OneToMany(mappedBy = "companies")
+    private List<Company> companies;
+
+    @OneToMany(mappedBy = "appointments")
+    private List<Appointment> appointments;
 }

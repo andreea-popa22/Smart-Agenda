@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Controller;
 
 import java.util.Date;
+import java.util.List;
 
 @Builder
 @Data
@@ -38,5 +39,9 @@ public class Client {
     private Date birthdate;
 
     @Column(name = "gender")
+    @Enumerated(EnumType.STRING)
     private Gender gender;
+
+    @OneToMany(mappedBy = "appointments")
+    private List<Appointment> appointments;
 }

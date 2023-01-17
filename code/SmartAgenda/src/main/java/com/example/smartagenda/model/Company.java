@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Builder
 @Data
 @AllArgsConstructor
@@ -24,6 +26,10 @@ public class Company {
     @Column(name = "contact")
     private String contact;
 
-    @Column(name = "location_id")
-    private int locationId;
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
+
+    @OneToMany(mappedBy = "providers")
+    private List<Provider> providers;
 }
