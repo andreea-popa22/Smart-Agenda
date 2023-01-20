@@ -17,5 +17,5 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
     @Query("select a from Appointment a where a.location.locationId = :locationId")
     List<Appointment> findAppointmentsByLocation(int locationId);
 
-    List<Appointment> filterAppointmentsForClientByDate(int clientId, Date date);
+    //public List<Appointment> filterAppointmentsForClientByDate(int clientId, Date date);
 }

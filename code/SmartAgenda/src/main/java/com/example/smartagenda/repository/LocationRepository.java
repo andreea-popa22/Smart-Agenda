@@ -10,4 +10,7 @@ import java.util.List;
 public interface LocationRepository extends JpaRepository<Location, Integer> {
     @Query("select l from Location l where l.type = :type")
     List<Location> findLocationsByType(LocationType type);
+
+    @Query("select l from Location l where l.locationId = :locationId")
+    Location findLocationById(int locationId);
 }

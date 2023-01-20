@@ -38,17 +38,17 @@ public class Provider {
     private Date birthdate;
 
     @Column(name = "gender")
-    @Enumerated(EnumType.STRING)
-    private Gender gender;
+    //@Enumerated(EnumType.STRING)
+    private String gender;
 
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
 
-    @OneToMany(mappedBy = "appointments")
+    @OneToMany(mappedBy = "provider")
     private List<Appointment> appointments;
 
-    public Provider(String firstName, String lastName, String phoneNumber, String emailAddress, Date birthdate, Gender gender, Company company) {
+    public Provider(String firstName, String lastName, String phoneNumber, String emailAddress, Date birthdate, String gender, Company company) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;

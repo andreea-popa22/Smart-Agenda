@@ -13,7 +13,7 @@ public class ClientMapper {
                 clientDto.getPhoneNumber(),
                 clientDto.getEmailAddress(),
                 clientDto.getBirthdate(),
-                Gender.valueOf(clientDto.getGender()));
+                clientDto.getGender());
     }
 
     public ClientDto toClientDto(Client client) {

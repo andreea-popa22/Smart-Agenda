@@ -34,10 +34,10 @@ public class Location {
     @Column(name = "is_office")
     private boolean isOffice = false;
 
-    @OneToMany(mappedBy = "companies")
+    @OneToMany(mappedBy = "location")
     private List<Company> companies;
 
-    @OneToMany(mappedBy = "appointments")
+    @OneToMany(mappedBy = "location")
     private List<Appointment> appointments;
 
     public Location(String name, String address, LocationType type, boolean isOffice) {

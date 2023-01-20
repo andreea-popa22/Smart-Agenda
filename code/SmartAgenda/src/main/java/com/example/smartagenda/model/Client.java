@@ -39,13 +39,13 @@ public class Client {
     private Date birthdate;
 
     @Column(name = "gender")
-    @Enumerated(EnumType.STRING)
-    private Gender gender;
+    //@Enumerated(EnumType.STRING)
+    private String gender;
 
-    @OneToMany(mappedBy = "appointments")
+    @OneToMany(mappedBy = "client")
     private List<Appointment> appointments;
 
-    public Client(String firstName, String lastName, String phoneNumber, String emailAddress, Date birthdate, Gender gender) {
+    public Client(String firstName, String lastName, String phoneNumber, String emailAddress, Date birthdate, String gender) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;

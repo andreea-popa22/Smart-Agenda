@@ -34,6 +34,7 @@ public class AppointmentService {
         List<Appointment> clientAppointments = findAppointmentsForClient(clientId);
         return clientAppointments
                 .stream()
+                .filter(a -> a.getDate() == date)
                 .sorted(Comparator.comparing(Appointment::getDate))
                 .collect(Collectors.toList());
     }

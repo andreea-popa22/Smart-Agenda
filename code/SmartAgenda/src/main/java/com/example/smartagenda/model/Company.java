@@ -30,7 +30,7 @@ public class Company {
     @JoinColumn(name = "location_id")
     private Location location;
 
-    @OneToMany(mappedBy = "providers")
+    @OneToMany(mappedBy = "company")
     private List<Provider> providers;
 
     public Company(String name, String contact, Location location) {
