@@ -10,6 +10,8 @@ import com.example.smartagenda.repository.LocationRepository;
 import com.example.smartagenda.repository.ProviderRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class AppointmentMapper {
     private ClientRepository clientRepository;
@@ -17,11 +19,11 @@ public class AppointmentMapper {
     private ProviderRepository providerRepository;
 
     public Appointment fromAppointmentDto(AppointmentDto appointmentDto) {
-        Client client = clientRepository.findClientById(appointmentDto.getClientId());
+        Optional<Client> client = clientRepository.findClientById(appointmentDto.getClientId());
         Provider provider = providerRepository.findProviderById(appointmentDto.getProviderId());
         Location location = locationRepository.findLocationById(appointmentDto.getLocationId());
 
-        return new Appointment(client,
+        return new Appointment(client.get(),
                 provider,
                 location,
                 appointmentDto.getDate(),

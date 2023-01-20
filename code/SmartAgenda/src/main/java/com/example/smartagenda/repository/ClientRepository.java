@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface ClientRepository extends JpaRepository<Client, Integer> {
 
     @Query("select c from Client c where c.clientId = :clientId")
-    Client findClientById(int clientId);
+    Optional<Client> findClientById(int clientId);
 
     @Query("select c from Client c where c.firstName = :firstName and c.lastName = :lastName")
     Optional<Client> findClientByFullName(String firstName, String lastName);

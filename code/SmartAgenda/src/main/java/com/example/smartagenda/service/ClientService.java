@@ -1,5 +1,7 @@
 package com.example.smartagenda.service;
 
+import com.example.smartagenda.exception.ClientNotFoundException;
+import com.example.smartagenda.helper.Constants;
 import com.example.smartagenda.model.Appointment;
 import com.example.smartagenda.model.Client;
 import com.example.smartagenda.repository.AppointmentRepository;
@@ -33,11 +35,35 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
-    public Optional<Client> findClientByFullName(Client client) {
-        return clientRepository.findClientByFullName(client.getFirstName(), client.getLastName());
+    public Optional<Client> findClientByFullName(String firstName, String lastName) {
+        return clientRepository.findClientByFullName(firstName, lastName);
+    }
+
+    public Optional<Client> findClientById(int clientId) {
+        return clientRepository.findClientById(clientId);
     }
 
     public int totalClients() {
         return clientRepository.totalClients();
+    }
+
+    public Client editClient(String oldFirstName, String oldLastName, String newFirstName, String newLastName) {
+        Optional<Client> client = clientRepository.findClientByFullName(oldFirstName, oldLastName);
+        if (client.isEmpty()) {
+            throw new ClientNotFoundException(String.format(Constants.CLIENT_NOT_FOUND, oldFirstName + ' ' + oldLastName));
+        }
+        Client updateClient = client.get();
+        updateClient.setFirstName(newFirstName);
+        updateClient.setLastName(newLastName);
+        return clientRepository.save(updateClient);
+    }
+
+    public boolean deleteClient(String firstName, String lastName) {
+        Optional<Client> client = clientRepository.findClientByFullName(firstName, lastName);
+        if (client.isEmpty()) {
+            throw new ClientNotFoundException(String.format(Constants.CLIENT_NOT_FOUND, firstName + ' ' + lastName));
+        }
+        clientRepository.delete(client.get());
+        return true;
     }
 }
