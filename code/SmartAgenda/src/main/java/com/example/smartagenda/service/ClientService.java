@@ -1,7 +1,9 @@
 package com.example.smartagenda.service;
 
+import com.example.smartagenda.dto.ClientDto;
 import com.example.smartagenda.exception.ClientNotFoundException;
 import com.example.smartagenda.helper.Constants;
+import com.example.smartagenda.mapper.ClientMapper;
 import com.example.smartagenda.model.Appointment;
 import com.example.smartagenda.model.Client;
 import com.example.smartagenda.repository.AppointmentRepository;
@@ -16,10 +18,12 @@ import java.util.stream.Collectors;
 public class ClientService {
     private final ClientRepository clientRepository;
     private final AppointmentRepository appointmentRepository;
+    private final ClientMapper clientMapper;
 
-    public ClientService(ClientRepository clientRepository, AppointmentRepository appointmentRepository) {
+    public ClientService(ClientRepository clientRepository, AppointmentRepository appointmentRepository, ClientMapper clientMapper) {
         this.clientRepository = clientRepository;
         this.appointmentRepository = appointmentRepository;
+        this.clientMapper = clientMapper;
     }
 
     public List<Client> retrieveAllClients() {
@@ -47,15 +51,21 @@ public class ClientService {
         return clientRepository.totalClients();
     }
 
-    public Client editClient(String oldFirstName, String oldLastName, String newFirstName, String newLastName) {
-        Optional<Client> client = clientRepository.findClientByFullName(oldFirstName, oldLastName);
+    public ClientDto editClient(int id, ClientDto editedClientDto) {
+        Optional<Client> client = clientRepository.findClientById(id);
         if (client.isEmpty()) {
-            throw new ClientNotFoundException(String.format(Constants.CLIENT_NOT_FOUND, oldFirstName + ' ' + oldLastName));
+            throw new ClientNotFoundException(Constants.ID_NOT_FOUND);
         }
+
         Client updateClient = client.get();
-        updateClient.setFirstName(newFirstName);
-        updateClient.setLastName(newLastName);
-        return clientRepository.save(updateClient);
+        updateClient.setFirstName(editedClientDto.getFirstName());
+        updateClient.setLastName(editedClientDto.getLastName());
+        updateClient.setPhoneNumber(editedClientDto.getPhoneNumber());
+        updateClient.setBirthdate(editedClientDto.getBirthdate());
+        updateClient.setGender(editedClientDto.getGender());
+        updateClient.setEmailAddress(editedClientDto.getEmailAddress());
+
+        return clientMapper.toClientDto(clientRepository.save(updateClient));
     }
 
     public boolean deleteClient(String firstName, String lastName) {

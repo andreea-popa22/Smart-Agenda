@@ -1,5 +1,6 @@
 package com.example.smartagenda.controller;
 
+import com.example.smartagenda.dto.ClientDto;
 import com.example.smartagenda.exception.ClientAlreadyExistsException;
 import com.example.smartagenda.exception.ClientNotFoundException;
 import com.example.smartagenda.helper.Constants;
@@ -70,8 +71,8 @@ public class ClientController {
         return ResponseEntity.ok(clientService.saveNewClient(client));
     }
 
-    @PutMapping("/{oldFirstName}/{oldLastName}/{newFirstName}/{newLastName}")
-    public ResponseEntity<?> editClient(@PathVariable String oldFirstName, @PathVariable String oldLastName, @PathVariable String newFirstName, @PathVariable String newLastName) {
-        return ResponseEntity.ok(clientService.editClient(oldFirstName, oldLastName, newFirstName, newLastName));
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<?> editClient(@PathVariable int id, @RequestBody ClientDto editedClientDto) {
+        return ResponseEntity.ok(clientService.editClient(id, editedClientDto));
     }
 }
