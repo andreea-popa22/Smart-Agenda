@@ -1,5 +1,6 @@
 package com.example.smartagenda.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,10 +31,12 @@ public class Company {
     @JoinColumn(name = "location_id")
     private Location location;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "company")
     private List<Provider> providers;
 
-    public Company(String name, String contact, Location location) {
+    public Company(int id, String name, String contact, Location location) {
+        this.companyId = id;
         this.name = name;
         this.contact = contact;
         this.location = location;

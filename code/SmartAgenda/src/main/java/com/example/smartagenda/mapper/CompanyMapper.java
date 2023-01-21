@@ -6,19 +6,27 @@ import com.example.smartagenda.model.Location;
 import com.example.smartagenda.repository.LocationRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class CompanyMapper {
     private LocationRepository locationRepository;
 
+    public CompanyMapper(LocationRepository locationRepository) {
+        this.locationRepository = locationRepository;
+    }
+
     public Company fromCompanyDto(CompanyDto companyDto){
-        Location location = locationRepository.findLocationById(companyDto.getLocationId());
-        return new Company(companyDto.getName(),
+        Optional<Location> location = locationRepository.findLocationById(companyDto.getLocationId());
+        return new Company(companyDto.getId(),
+                companyDto.getName(),
                 companyDto.getContact(),
-                location);
+                location.get());
     }
 
     public CompanyDto toCompanyDto(Company company){
-        return new CompanyDto(company.getName(),
+        return new CompanyDto(company.getCompanyId(),
+                company.getName(),
                 company.getContact(),
                 company.getLocation().getLocationId());
     }

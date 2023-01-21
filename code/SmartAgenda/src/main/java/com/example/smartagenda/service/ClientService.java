@@ -33,10 +33,12 @@ public class ClientService {
                 .collect(Collectors.toList());
     }
 
-    public Client saveNewClient(Client client){
+    public ClientDto saveNewClient(ClientDto clientDto){
+        Client client = clientMapper.fromClientDto(clientDto);
         List<Appointment> appointments = appointmentRepository.findAppointmentsForClient(client.getClientId());
         client.setAppointments(appointments);
-        return clientRepository.save(client);
+        clientRepository.save(client);
+        return clientMapper.toClientDto(client);
     }
 
     public Optional<Client> findClientByFullName(String firstName, String lastName) {

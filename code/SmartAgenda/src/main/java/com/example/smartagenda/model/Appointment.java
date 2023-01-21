@@ -41,12 +41,13 @@ public class Appointment {
     @Column(name = "end_time")
     private LocalTime endTime;
 
-    public Appointment(Client client, Provider provider, Location location, Date date, LocalTime startTime, LocalTime endTime) {
-        this.client = client;
-        this.provider = provider;
-        this.location = location;
-        this.date = date;
-        this.startTime = startTime;
-        this.endTime = endTime;
-    }
+//    public Appointment(int id, Client client, Provider provider, Location location, Date date, LocalTime startTime, LocalTime endTime) {
+//        this.appointmentId = id;
+//        this.client = client;
+//        this.provider = provider;
+//        this.location = location;
+//        this.date = date;
+//        this.startTime = startTime;
+//        this.endTime = endTime;
+//    }
 }

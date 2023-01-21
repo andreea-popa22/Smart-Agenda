@@ -13,6 +13,8 @@ import lombok.Data;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LocationDto {
+    private int id;
+
     @NotBlank
     private String name;
 

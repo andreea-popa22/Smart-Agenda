@@ -8,14 +8,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class LocationMapper {
     public Location fromLocationDto(LocationDto locationDto){
-        return new Location(locationDto.getName(),
+        return new Location(locationDto.getId(),
+                locationDto.getName(),
                 locationDto.getAddress(),
                 LocationType.valueOf(locationDto.getType()),
                 locationDto.isOffice());
     }
 
     public LocationDto toLocationDto(Location location){
-        return new LocationDto(location.getName(),
+        return new LocationDto(location.getLocationId(),
+                location.getName(),
                 location.getAddress(),
                 location.getType().toString(),
                 location.isOffice());

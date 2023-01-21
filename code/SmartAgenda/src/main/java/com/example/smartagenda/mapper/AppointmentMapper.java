@@ -18,21 +18,29 @@ public class AppointmentMapper {
     private LocationRepository locationRepository;
     private ProviderRepository providerRepository;
 
+    public AppointmentMapper(ClientRepository clientRepository, LocationRepository locationRepository, ProviderRepository providerRepository) {
+        this.clientRepository = clientRepository;
+        this.locationRepository = locationRepository;
+        this.providerRepository = providerRepository;
+    }
+
     public Appointment fromAppointmentDto(AppointmentDto appointmentDto) {
         Optional<Client> client = clientRepository.findClientById(appointmentDto.getClientId());
-        Provider provider = providerRepository.findProviderById(appointmentDto.getProviderId());
-        Location location = locationRepository.findLocationById(appointmentDto.getLocationId());
+        Optional<Provider> provider = providerRepository.findProviderById(appointmentDto.getProviderId());
+        Optional<Location> location = locationRepository.findLocationById(appointmentDto.getLocationId());
 
-        return new Appointment(client.get(),
-                provider,
-                location,
+        return new Appointment(appointmentDto.getId(),
+                client.get(),
+                provider.get(),
+                location.get(),
                 appointmentDto.getDate(),
                 appointmentDto.getStartTime(),
                 appointmentDto.getEndTime());
     }
 
     public AppointmentDto toAppointmentDto(Appointment appointment) {
-        return new AppointmentDto(appointment.getClient().getClientId(),
+        return new AppointmentDto(appointment.getAppointmentId(),
+                appointment.getClient().getClientId(),
                 appointment.getProvider().getProviderId(),
                 appointment.getLocation().getLocationId(),
                 appointment.getDate(),

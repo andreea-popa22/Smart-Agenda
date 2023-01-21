@@ -13,6 +13,8 @@ import lombok.Data;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CompanyDto {
+    private int id;
+
     @NotBlank
     private String name;
 

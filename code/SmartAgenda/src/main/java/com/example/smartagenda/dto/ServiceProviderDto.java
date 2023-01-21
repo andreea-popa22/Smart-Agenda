@@ -12,6 +12,8 @@ import lombok.Data;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ServiceProviderDto {
+    private int id;
+
     @NotNull
     private float price;
 

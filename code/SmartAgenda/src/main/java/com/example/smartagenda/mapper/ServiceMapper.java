@@ -7,12 +7,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServiceMapper {
     public Service fromServiceDto(ServiceDto serviceDto){
-        return new Service(serviceDto.getName(),
+        return new Service(serviceDto.getId(),
+                serviceDto.getName(),
                 serviceDto.getDescription());
     }
 
     public ServiceDto toServiceDto(Service service){
-        return new ServiceDto(service.getName(),
+        return new ServiceDto(service.getServiceId(),
+                service.getName(),
                 service.getDescription());
     }
 }

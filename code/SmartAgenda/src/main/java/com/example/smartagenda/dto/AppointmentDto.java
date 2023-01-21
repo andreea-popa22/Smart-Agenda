@@ -13,6 +13,8 @@ import lombok.Data;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AppointmentDto {
+    private int id;
+
     @NotNull
     private int clientId;
 

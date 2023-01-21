@@ -24,8 +24,9 @@ public class Service {
     @Column(name = "description")
     private String description;
 
-    public Service(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
+//    public Service(int id, String name, String description) {
+//        this.serviceId = id;
+//        this.name = name;
+//        this.description = description;
+//    }
 }

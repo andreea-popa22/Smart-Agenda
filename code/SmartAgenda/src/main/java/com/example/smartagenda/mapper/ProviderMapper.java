@@ -15,13 +15,17 @@ import java.util.Optional;
 public class ProviderMapper {
     private CompanyRepository companyRepository;
 
+    public ProviderMapper(CompanyRepository companyRepository){
+        this.companyRepository = companyRepository;
+    }
+
     public Provider fromProviderDto(ProviderDto providerDto) {
         Optional<Company> company = companyRepository.findById(providerDto.getCompanyId());
         if (company.isEmpty()) {
-            String id = String.valueOf(providerDto.getCompanyId());
             throw new CompanyNotFoundException(Constants.ID_NOT_FOUND);
         }
-        return new Provider(providerDto.getFirstName(),
+        return new Provider(providerDto.getId(),
+                providerDto.getFirstName(),
                 providerDto.getLastName(),
                 providerDto.getPhoneNumber(),
                 providerDto.getEmailAddress(),
@@ -31,7 +35,8 @@ public class ProviderMapper {
     }
 
     public ProviderDto toProviderDto(Provider provider) {
-        return new ProviderDto(provider.getFirstName(),
+        return new ProviderDto(provider.getProviderId(),
+                provider.getFirstName(),
                 provider.getLastName(),
                 provider.getPhoneNumber(),
                 provider.getEmailAddress(),

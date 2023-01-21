@@ -1,6 +1,7 @@
 package com.example.smartagenda.model;
 
 import com.example.smartagenda.enums.Gender;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -45,10 +46,12 @@ public class Provider {
     @JoinColumn(name = "company_id")
     private Company company;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "provider")
     private List<Appointment> appointments;
 
-    public Provider(String firstName, String lastName, String phoneNumber, String emailAddress, Date birthdate, String gender, Company company) {
+    public Provider(int id, String firstName, String lastName, String phoneNumber, String emailAddress, Date birthdate, String gender, Company company) {
+        this.providerId = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;

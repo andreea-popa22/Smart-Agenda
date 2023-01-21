@@ -1,8 +1,11 @@
 package com.example.smartagenda.service;
 
+import com.example.smartagenda.dto.CompanyDto;
 import com.example.smartagenda.exception.ClientNotFoundException;
+import com.example.smartagenda.exception.CompanyNotFoundException;
 import com.example.smartagenda.exception.LocationNotFoundException;
 import com.example.smartagenda.helper.Constants;
+import com.example.smartagenda.mapper.CompanyMapper;
 import com.example.smartagenda.model.Company;
 import com.example.smartagenda.model.Location;
 import com.example.smartagenda.repository.CompanyRepository;
@@ -16,10 +19,16 @@ import java.util.Optional;
 public class CompanyService {
     private final CompanyRepository companyRepository;
     private final LocationRepository locationRepository;
+    private final CompanyMapper companyMapper;
 
-    public CompanyService(CompanyRepository companyRepository, LocationRepository locationRepository){
+    public CompanyService(CompanyRepository companyRepository, LocationRepository locationRepository, CompanyMapper companyMapper){
         this.companyRepository = companyRepository;
         this.locationRepository = locationRepository;
+        this.companyMapper = companyMapper;
+    }
+
+    public Optional<Company> findCompanyById(int locationId) {
+        return companyRepository.findById(locationId);
     }
 
     public List<Company> findCompaniesByLocation(int locationId) {
@@ -34,12 +43,20 @@ public class CompanyService {
         return companyRepository.findAll();
     }
 
-    public Company saveNewCompany(Company company){
-        Optional<Location> location = locationRepository.findById(company.getLocation().getLocationId());
-        if (location.isEmpty()) {
-            throw new LocationNotFoundException(String.format(Constants.LOCATION_NOT_FOUND, company.getLocation().getName()));
-        }
+    public CompanyDto saveNewCompany(CompanyDto companyDto){
+        Company company = companyMapper.fromCompanyDto(companyDto);
+        Optional<Location> location = locationRepository.findLocationById(companyDto.getLocationId());
         company.setLocation(location.get());
-        return companyRepository.save(company);
+        companyRepository.save(company);
+        return companyMapper.toCompanyDto(company);
+    }
+
+    public boolean deleteCompany(String name) {
+        Optional<Company> company = companyRepository.findCompanyByName(name);
+        if (company.isEmpty()) {
+            throw new CompanyNotFoundException(String.format(Constants.COMPANY_NOT_FOUND, name));
+        }
+        companyRepository.delete(company.get());
+        return true;
     }
 }

@@ -15,6 +15,8 @@ import lombok.Data;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClientDto {
+    private int id;
+
     @NotBlank
     private String firstName;
 

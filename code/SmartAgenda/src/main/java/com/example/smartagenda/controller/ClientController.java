@@ -31,7 +31,7 @@ public class ClientController {
 
     @GetMapping
     //@Operation(summary = "Getting all clients from database")
-    public ResponseEntity<?> listClient(Model model) {
+    public ResponseEntity<?> listClients() {
         return new ResponseEntity<>(clientService.retrieveAllClients(), HttpStatus.OK);
     }
 
@@ -53,22 +53,15 @@ public class ClientController {
         return ResponseEntity.ok(client.get());
     }
 
-    @GetMapping("/delete/{firstName}/{lastName}")
+    @DeleteMapping("/delete/{firstName}/{lastName}")
     public ResponseEntity<String> deleteClient(@PathVariable String firstName, @PathVariable String lastName){
         clientService.deleteClient(firstName, lastName);
         return ResponseEntity.ok(Constants.OBJECT_DELETED);
     }
 
-    @PostMapping("/client/add")
-    public String addClient(@ModelAttribute("client") Client client, Model model) {
-        clientService.saveNewClient(client);
-        model.addAttribute("data", clientService.retrieveAllClients());
-        return "index";
-    }
-
     @PostMapping("/add")
-    public ResponseEntity<Client> addNewClient(@Valid @RequestBody Client client){
-        return ResponseEntity.ok(clientService.saveNewClient(client));
+    public ResponseEntity<ClientDto> addNewClient(@Valid @RequestBody ClientDto clientDto){
+        return ResponseEntity.ok().body(clientService.saveNewClient(clientDto));
     }
 
     @PutMapping("/edit/{id}")

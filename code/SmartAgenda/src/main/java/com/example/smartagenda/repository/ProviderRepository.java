@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface ProviderRepository extends JpaRepository<Provider, Integer> {
     @Query("select p from Provider p where p.providerId = :providerId")
-    Provider findProviderById(int providerId);
+    Optional<Provider> findProviderById(int providerId);
 
     @Query("select p from Provider p where p.firstName = :firstName and p.lastName = :lastName")
     Optional<Provider> findProviderByFullName(String firstName, String lastName);
