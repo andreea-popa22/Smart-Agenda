@@ -1,5 +1,5 @@
 package com.example.smartagenda.dto;
-import jakarta.validation.constraints.*;
+import javax.validation.constraints.*;
 import java.time.LocalTime;
 import java.util.Date;
 

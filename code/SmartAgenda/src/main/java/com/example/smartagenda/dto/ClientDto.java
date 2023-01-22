@@ -1,8 +1,8 @@
 package com.example.smartagenda.dto;
 
 import com.example.smartagenda.enums.Gender;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import java.util.Date;
 import lombok.AllArgsConstructor;

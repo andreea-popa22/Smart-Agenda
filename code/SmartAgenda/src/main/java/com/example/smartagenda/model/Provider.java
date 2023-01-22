@@ -2,7 +2,7 @@ package com.example.smartagenda.model;
 
 import com.example.smartagenda.enums.Gender;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

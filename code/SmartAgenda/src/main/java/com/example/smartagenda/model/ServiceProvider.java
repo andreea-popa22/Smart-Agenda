@@ -1,7 +1,7 @@
 package com.example.smartagenda.model;
 
 import com.example.smartagenda.model.embeddable.ServiceProviderId;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

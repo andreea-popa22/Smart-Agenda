@@ -11,7 +11,10 @@ import com.example.smartagenda.model.Location;
 import com.example.smartagenda.model.Service;
 import com.example.smartagenda.repository.ServiceRepository;
 import com.example.smartagenda.service.ServiceService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +27,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/services")
+@Tag(name = "Services Controller", description = "Set of endpoints for managing services.")
 public class ServiceController {
     private final ServiceService serviceService;
     private final ServiceRepository serviceRepository;
@@ -36,12 +40,13 @@ public class ServiceController {
     }
 
     @GetMapping
-    //@Operation(summary = "Getting all services from database")
+    @Operation(summary = "Getting all services from database.")
     public ResponseEntity<?> listServices() {
         return new ResponseEntity<>(serviceService.retrieveAllServices(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Get service by id.")
     public ResponseEntity<?> getService(@PathVariable int id) {
         Optional<Service> service = serviceService.findServiceById(id);
         if (service.isEmpty()) {
@@ -51,12 +56,14 @@ public class ServiceController {
     }
 
     @GetMapping("/name={name}")
+    @Operation(summary = "Find services by name.")
     public ResponseEntity<?> findServicesByName(@PathVariable String name){
         List<Service> services = serviceService.findServicesByName(name);
         return ResponseEntity.ok(services);
     }
 
     @PostMapping("/add")
+    @Operation(summary = "Add new service.")
     public ResponseEntity<ServiceDto> addNewService(@Valid @RequestBody ServiceDto serviceDto){
         return ResponseEntity.ok(serviceService.saveNewService(serviceDto));
     }
