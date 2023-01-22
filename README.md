@@ -37,3 +37,10 @@ ____
 
 ## Endpoints:
 
+![endpoints](./resources/swagger-endpoints.png)
+
+____
+
+## Schemas:
+
+![schemas](./resources/swagger-schemas.png)
