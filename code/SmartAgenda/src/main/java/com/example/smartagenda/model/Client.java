@@ -45,6 +45,15 @@ public class Client {
     @OneToMany(mappedBy = "client")
     private List<Appointment> appointments;
 
+    public Client(String firstName, String lastName, String phoneNumber, String emailAddress, Date birthdate, String gender) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.emailAddress = emailAddress;
+        this.birthdate = birthdate;
+        this.gender = gender;
+    }
+
     public Client(int id, String firstName, String lastName, String phoneNumber, String emailAddress, Date birthdate, String gender) {
         this.clientId = id;
         this.firstName = firstName;

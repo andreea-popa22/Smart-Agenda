@@ -34,4 +34,13 @@ public class ClientDto {
 
     @NotNull
     private String gender;
+
+    public ClientDto(String firstName, String lastName, String phoneNumber, String emailAddress, Date birthdate, String gender) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.emailAddress = emailAddress;
+        this.birthdate = birthdate;
+        this.gender = gender;
+    }
 }

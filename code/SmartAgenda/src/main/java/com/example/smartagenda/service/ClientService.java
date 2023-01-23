@@ -26,10 +26,11 @@ public class ClientService {
         this.clientMapper = clientMapper;
     }
 
-    public List<Client> retrieveAllClients() {
+    public List<ClientDto> retrieveAllClients() {
         return clientRepository.findAll()
                 .stream()
                 .sorted(Comparator.comparing(Client::getFirstName))
+                .map(clientMapper::toClientDto)
                 .collect(Collectors.toList());
     }
 
