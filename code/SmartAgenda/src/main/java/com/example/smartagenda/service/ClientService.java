@@ -1,6 +1,7 @@
 package com.example.smartagenda.service;
 
 import com.example.smartagenda.dto.ClientDto;
+import com.example.smartagenda.exception.ClientAlreadyExistsException;
 import com.example.smartagenda.exception.ClientNotFoundException;
 import com.example.smartagenda.helper.Constants;
 import com.example.smartagenda.mapper.ClientMapper;
@@ -35,6 +36,9 @@ public class ClientService {
     }
 
     public ClientDto saveNewClient(ClientDto clientDto){
+        if(clientRepository.findClientByFullName(clientDto.getFirstName(), clientDto.getLastName()).isPresent()){
+            throw new ClientAlreadyExistsException(String.format(Constants.CLIENT_EXISTS,clientDto.getFirstName() + " " + clientDto.getLastName()));
+        }
         Client client = clientMapper.fromClientDto(clientDto);
         List<Appointment> appointments = appointmentRepository.findAppointmentsForClient(client.getClientId());
         client.setAppointments(appointments);
