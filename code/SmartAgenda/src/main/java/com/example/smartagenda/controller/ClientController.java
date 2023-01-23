@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -35,7 +36,7 @@ public class ClientController {
 
     @GetMapping
     @Operation(summary = "Retrieving all clients from database.")
-    public ResponseEntity<?> listClients() {
+    public ResponseEntity<List<ClientDto>> listClients() {
         return new ResponseEntity<>(clientService.retrieveAllClients(), HttpStatus.OK);
     }
 
@@ -74,7 +75,7 @@ public class ClientController {
 
     @PutMapping("/edit/{id}")
     @Operation(summary = "Edit client details (except the id).")
-    public ResponseEntity<?> editClient(@PathVariable int id, @RequestBody ClientDto editedClientDto) {
+    public ResponseEntity<ClientDto> editClient(@PathVariable int id, @RequestBody ClientDto editedClientDto) {
         return ResponseEntity.ok(clientService.editClient(id, editedClientDto));
     }
 }
